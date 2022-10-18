@@ -56,3 +56,22 @@ def borrarMonopatin():
     cursor.execute(instruccion)
     conn.commit()
     conn.close()
+
+i=0
+while i == 0:
+    print("menu")
+    print("1-Ingresar monopatin/es: ")
+    print("2-Ver monopatin/es: ")
+    print("3-Modificar precio: ")
+    print("4-Borrar monopatin/es")
+    print("5-Salir")
+    opcion = int(input())
+    if opcion == 1:
+        print("Ingrese monopatin/es:")
+        insertarTabla()
+    elif opcion == 2:
+        leerTabla()
+    elif opcion == 3:
+        cambiarPrecio()
+    elif opcion == 4:
+        borrarMonopatin()
