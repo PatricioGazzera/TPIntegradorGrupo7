@@ -1,8 +1,13 @@
 import sqlite3
 from tkinter import INSERT
 
+def crearDB():
+    conn = sqlite3.connect('trabajopracticogrupo8.db')
+    conn.commit()
+    conn.close()
+
 def creaTabla():
-    conn = sqlite3.connect('MONOPATINES.db')
+    conn = sqlite3.connect('trabajopracticogrupo8.db')
     cursor = conn.cursor()
     cursor.execute(
         """CREATE TABLE MONOPATINES(
@@ -20,7 +25,7 @@ def insertarTabla():
     precio=input("Ingrese precio: ")
     cantidad=input("Ingrese cantidad: ")
     disponible=input("Ingrese cantidad disponible: ")
-    conn = sqlite3.connect('MONOPATINES.db')
+    conn = sqlite3.connect('trabajopracticogrupo8.db')
     cursor = conn.cursor()
     instruccion = f"INSERT INTO MONOPATINES VALUES({id}, '{marca}', {precio}, {cantidad}, {disponible})"
     cursor.execute(instruccion)
@@ -28,7 +33,7 @@ def insertarTabla():
     conn.close()
     
 def leerTabla():
-    conn = sqlite3.connect('MONOPATINES.db')
+    conn = sqlite3.connect('trabajopracticogrupo8.db')
     cursor = conn.cursor()
     instruccion = f"SELECT * FROM MONOPATINES"
     cursor.execute(instruccion)
@@ -40,7 +45,7 @@ def leerTabla():
 def cambiarPrecio():
     buscar_por_id = input('ID del monopatin: ')
     nuevoPrecio = input('Nuevo precio: ')
-    conn = sqlite3.connect('MONOPATINES.db')
+    conn = sqlite3.connect('trabajopracticogrupo8.db')
     cursor = conn.cursor()
     instruccion = f"UPDATE MONOPATINES SET precio={nuevoPrecio} WHERE id={buscar_por_id}"
     cursor.execute(instruccion)
@@ -49,7 +54,7 @@ def cambiarPrecio():
 
 def borrarMonopatin():
     borrarId = input("Ingrese ID del monopatín a borrar: ")
-    conn = sqlite3.connect('MONOPATINES.db')
+    conn = sqlite3.connect('trabajopracticogrupo8.db')
     cursor = conn.cursor()
     instruccion = f"DELETE FROM MONOPATINES WHERE id={borrarId}"
     cursor.execute(instruccion)
@@ -66,6 +71,7 @@ while i == 0:
     print("5-Salir")
     opcion = int(input())
     if opcion == 1:
+        crearDB()
         print("Ingrese monopatin/es:")
         insertarTabla()
     elif opcion == 2:
