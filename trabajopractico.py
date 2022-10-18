@@ -15,11 +15,11 @@ def creaTabla():
     conn.close()
 
 def insertarTabla():
-    id=input("ingrese id: ")
-    marca=str(input("ingrese marca: "))
-    precio=input("ingrese precio: ")
-    cantidad=input("ingrese cantidad: ")
-    disponible=input("ingrese cantidad disponible: ")
+    id=input("Ingrese id: ")
+    marca=str(input("Ingrese marca: "))
+    precio=input("Ingrese precio: ")
+    cantidad=input("Ingrese cantidad: ")
+    disponible=input("Ingrese cantidad disponible: ")
     conn = sqlite3.connect('MONOPATINES.db')
     cursor = conn.cursor()
     instruccion = f"INSERT INTO MONOPATINES VALUES({id}, '{marca}', {precio}, {cantidad}, {disponible})"
