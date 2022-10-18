@@ -27,3 +27,19 @@ def insertarTabla():
     cursor.execute(instruccion)
     conn.commit()
     conn.close()
+
+def leerTabla():
+    conn = sqlite3.connect('MONOPATINES.db')
+    cursor = conn.cursor()
+    instruccion = f"SELECT * FROM MONOPATINES"
+    cursor.execute(instruccion)
+    datos = cursor.fetchall()
+    conn.commit()
+    conn.close()
+    print(datos)
+
+def cambiarPrecio():
+    buscar_por_id = input('ID del monopatin: ')
+    nuevoPrecio = input('Nuevo precio: ')
+    conn = sqlite3.connect('MONOPATINES.db')
+    cursor = conn.cursor()
