@@ -43,3 +43,16 @@ def cambiarPrecio():
     nuevoPrecio = input('Nuevo precio: ')
     conn = sqlite3.connect('MONOPATINES.db')
     cursor = conn.cursor()
+    instruccion = f"UPDATE MONOPATINES SET precio={nuevoPrecio} WHERE id={buscar_por_id}"
+    cursor.execute(instruccion)
+    conn.commit()
+    conn.close()
+
+def borrarMonopatin():
+    borrarId = input("Ingrese ID del monopatín a borrar: ")
+    conn = sqlite3.connect('MONOPATINES.db')
+    cursor = conn.cursor()
+    instruccion = f"DELETE FROM MONOPATINES WHERE id={borrarId}"
+    cursor.execute(instruccion)
+    conn.commit()
+    conn.close()
