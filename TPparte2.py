@@ -21,16 +21,15 @@ def creaTabla():
     conn.close()
 
 def insertarTabla():
-    id_mono = input("Ingrese id: ")
     marca=str(input("Ingrese marca: "))
+    modelo=str(input("Ingrese Modelo: "))
+    color=str(input("Ingrese Color : "))
     precio=input("Ingrese precio: ")
-    modelo=input("Ingrese Modelo: ")
-    color=input("Ingrese Color : ")
-    potencia = input("Ingrese la potencia de su monopatin :" + " W")
-    fechaUltimoPrecio = print("La fecha de creacion es : " + datetime.now())
+    potencia = input("Ingrese la potencia de su monopatin :" + "W ")
+    fechaUltimoPrecio = datetime.now()
     conn = sqlite3.connect('Monopatines2.db')
     cursor = conn.cursor()
-    cursor.execute(f"INSERT INTO Monopatines2 VALUES({id_mono}, '{marca}', '{modelo}', '{color}', {potencia}, {precio}, {fechaUltimoPrecio})")
+    cursor.execute(f"INSERT INTO Monopatines2 VALUES(NULL ,'{marca}', '{modelo}', '{color}', {potencia}, {precio}, {fechaUltimoPrecio.hour})")
     conn.commit()
     conn.close()
 
