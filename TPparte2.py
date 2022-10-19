@@ -1,3 +1,4 @@
+from datetime import datetime
 import sqlite3 
 from tkinter import INSERT
 conn = sqlite3.connect("Monopatines2.db")
@@ -10,7 +11,7 @@ def creaTabla():
     cursor.execute(
         """CREATE TABLE Monopatines2(
         id_mono INTEGER PRIMARY KEY AUTOINCREMENT,
-        marca VARCHAR(30) UNIQUE,
+        marca VARCHAR(30),
         modelo VARCHAR(30),
         color VARCHAR(30),
         potencia VARCHAR(30),
@@ -20,16 +21,28 @@ def creaTabla():
     conn.close()
 
 def insertarTabla():
-    id_mono=input("ingrese id: ")
-    marca=str(input("ingrese marca: "))
-    precio=input("ingrese precio: ")
-    cantidad=input("ingrese cantidad: ")
-    disponible=input("ingrese cantidad disponible: ")
+    id_mono = input("Ingrese id: ")
+    marca=str(input("Ingrese marca: "))
+    precio=input("Ingrese precio: ")
+    modelo=input("Ingrese Modelo: ")
+    color=input("Ingrese Color : ")
+    potencia = input("Ingrese la potencia de su monopatin :" + " W")
+    fechaUltimoPrecio = print("La fecha de creacion es : " + datetime.now())
     conn = sqlite3.connect('Monopatines2.db')
     cursor = conn.cursor()
-    cursor.execute(f"INSERT INTO Monopatines2 VALUES({id_mono}, '{marca}', {modelo}, {color}, {potencia}, {precio}, {fechaUltimoPrecio}")
+    cursor.execute(f"INSERT INTO Monopatines2 VALUES({id_mono}, '{marca}', '{modelo}', '{color}', {potencia}, {precio}, {fechaUltimoPrecio})")
     conn.commit()
     conn.close()
+
+def precioAumento():
+    conn = sqlite3.connect('Monopatines2.db')
+    cursor = conn.cursor()
+    historicoprecios = f"SELECT * FROM Monopatines2"
+    cursor.execute(historicoprecios)
+    dat = cursor.fetchall()
+    conn.commit()
+    conn.close()
+    print(dat)
 
 def leerTabla():
     conn = sqlite3.connect('Monopatines2.db')
@@ -79,6 +92,8 @@ while i == 0:
     elif opcion == 4:
         borrarMonopatin()
     elif opcion == 5:
+        precioAumento()
+    elif opcion == 6:
         print("Gracias por usar nuestro sistema")
         break
         
