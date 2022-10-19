@@ -6,7 +6,7 @@ def creaTabla():
     cursor = conn.cursor()
     cursor.execute(
         """CREATE TABLE MONOPATINES(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER PRIMARY KEY,
         marca VARCHAR(30) UNIQUE,
         precio FLOAT NOR NULL,
         cantidad INTEGER,
@@ -15,12 +15,10 @@ def creaTabla():
     conn.close()
 
 def insertarTabla():
-    num = 1111
-    id= num + 1
-    marca=str(input("ingrese marca: "))
-    precio=input("ingrese precio: ")
-    cantidad=input("ingrese cantidad: ")
-    disponible=input("ingrese cantidad disponible: ")
+    marca = str(input("ingrese marca: "))
+    precio = input("ingrese precio: ")
+    cantidad = input("ingrese cantidad: ")
+    disponible = input("ingrese cantidad disponible: ")
     conn = sqlite3.connect('MONOPATINES.db')
     cursor = conn.cursor()
     instruccion = f"INSERT INTO MONOPATINES VALUES({id}, '{marca}', {precio}, {cantidad}, {disponible})"
@@ -49,7 +47,7 @@ def cambiarPrecio():
     conn.close()
 
 def borrarMonopatin():
-    borrarId = input("Ingrese ID del monopatín a borrar: ")
+    borrarId = input("Ingrese ID del monopatin a borrar: ")
     conn = sqlite3.connect('MONOPATINES.db')
     cursor = conn.cursor()
     instruccion = f"DELETE FROM MONOPATINES WHERE id={borrarId}"
