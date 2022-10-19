@@ -18,7 +18,6 @@ def creaTabla():
     conn.close()
 
 def insertarTabla():
-
     marca = str(input("ingrese marca: "))
     precio = input("ingrese precio: ")
     cantidad = input("ingrese cantidad: ")
