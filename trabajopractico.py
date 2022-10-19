@@ -76,3 +76,6 @@ while i == 0:
         cambiarPrecio()
     elif opcion == 4:
         borrarMonopatin()
+    elif opcion == 5:
+        break
+        print("Gracias por usar nuestro sistema")
