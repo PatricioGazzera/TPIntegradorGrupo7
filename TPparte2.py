@@ -27,7 +27,7 @@ def insertarTabla():
     disponible=input("ingrese cantidad disponible: ")
     conn = sqlite3.connect('Monopatines2.db')
     cursor = conn.cursor()
-    cursor.execute(f"INSERT INTO Monopatines2 VALUES({id_mono}, '{marca}', {precio}, {cantidad}, {disponible})")
+    cursor.execute(f"INSERT INTO Monopatines2 VALUES({id_mono}, '{marca}', {modelo}, {color}, {potencia}, {precio}, {fechaUltimoPrecio}")
     conn.commit()
     conn.close()
 
