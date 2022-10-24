@@ -24,24 +24,14 @@ def insertarTabla():
     marca=str(input("Ingrese marca: "))
     modelo=str(input("Ingrese Modelo: "))
     color=str(input("Ingrese Color : "))
-    precio=input("Ingrese precio: ")
     potencia = input("Ingrese la potencia de su monopatin :" + "W ")
+    precio=input("Ingrese precio: ")
     fechaUltimoPrecio = datetime.now()
     conn = sqlite3.connect('Monopatines2.db')
     cursor = conn.cursor()
     cursor.execute(f"INSERT INTO Monopatines2 VALUES(NULL ,'{marca}', '{modelo}', '{color}', {potencia}, {precio}, {fechaUltimoPrecio.hour})")
     conn.commit()
     conn.close()
-
-def precioAumento():
-    conn = sqlite3.connect('Monopatines2.db')
-    cursor = conn.cursor()
-    historicoprecios = f"SELECT * FROM Monopatines2"
-    cursor.execute(historicoprecios)
-    dat = cursor.fetchall()
-    conn.commit()
-    conn.close()
-    print(dat)
 
 def leerTabla():
     conn = sqlite3.connect('Monopatines2.db')
@@ -54,11 +44,10 @@ def leerTabla():
     print(datos)
 
 def cambiarPrecio():
-    buscar_por_id = input('ID del monopatin: ')
-    nuevoPrecio = input('Nuevo precio: ')
     conn = sqlite3.connect('Monopatines2.db')
     cursor = conn.cursor()
-    instruccion = f"UPDATE Monopatines2 SET precio={nuevoPrecio} WHERE id={buscar_por_id}"
+    nuevoPrecio = 0.27
+    instruccion = f"UPDATE Monopatines2 SET precio=round(precio+(precio*{nuevoPrecio}), 2)"
     cursor.execute(instruccion)
     conn.commit()
     conn.close()
@@ -67,7 +56,7 @@ def borrarMonopatin():
     borrarId = input("Ingrese ID del monopatín a borrar: ")
     conn = sqlite3.connect('Monopatines2.db')
     cursor = conn.cursor()
-    instruccion = f"DELETE FROM Monopatines2 WHERE id={borrarId}"
+    instruccion = f"DELETE FROM Monopatines2 WHERE id_mono={borrarId}"
     cursor.execute(instruccion)
     conn.commit()
     conn.close()
@@ -91,8 +80,6 @@ while i == 0:
     elif opcion == 4:
         borrarMonopatin()
     elif opcion == 5:
-        precioAumento()
-    elif opcion == 6:
         print("Gracias por usar nuestro sistema")
         break
         
